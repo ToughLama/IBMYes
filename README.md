@@ -178,7 +178,7 @@ RESOURSE_ID // 资源组ID
 ![image-20200615235426917](img/README/image-20200615235426917.png)
 
 编辑下，随意增添个空行然后commit下
-注：此处原作者的.github/workflows/ibm.yml有bug，修改方法，将36hang的命令替换成一下:
+注：此处原作者的.github/workflows/ibm.yml有bug，修改方法，将36行的命令替换成一下:
 ```
 ./IBM_Cloud_CLI/ibmcloud cf install -f -v 6.15.0
 ```
@@ -230,7 +230,7 @@ fetch(request)
 )
 ```
 
-注：原作者的方法经本人在CF上测试有问题，不知具体原因，请修改成一下：
+注：原作者的方法经本人在CF上测试有问题，不知具体原因，请修改成以下内容：
 ```
 addEventListener(
 "fetch",event => {
