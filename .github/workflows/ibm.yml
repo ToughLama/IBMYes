@@ -19,25 +19,23 @@ jobs:
         ./IBM_Cloud_CLI/ibmcloud config --check-version=false
     - name: Login IBM Cloud
       env:
-        IBM_ACCOUNT: ${{ secrets.GOLANG }}
-        REGION_NUM: ${{ secrets.GOLANG_APP_NUM }}
+        IBM_ACCOUNT: ${{ secrets.IBM_ACCOUNT }}
+        REGION_NUM: ${{ secrets.REGION_NUM }}
       run: |
         ./IBM_Cloud_CLI/ibmcloud login <<EOF
-        $GOLANG
-        $GOLANG_APP_NUM
+        $IBM_ACCOUNT
+        $REGION_NUM
         no
         EOF
     - name: Target IBM Cloud
       env:
         RESOURSE_ID: ${{ secrets.RESOURSE_ID }}
       run: |
-        ./IBM_Cloud_CLI/ibmcloud target -g "$GOLANG_APP_ID"
+        ./IBM_Cloud_CLI/ibmcloud target -g "$RESOURSE_ID"
         ./IBM_Cloud_CLI/ibmcloud target --cf
-        ./IBM_Cloud_CLI/ibmcloud cf install -v 6.51.0
+        ./IBM_Cloud_CLI/ibmcloud cf install -f -v 6.15.0
     - name: Restart IBM Cloud
       env:
-        IBM_APP_NAME: ${{ secrets.GOLANG_APP_NAME }}
+        IBM_APP_NAME: ${{ secrets.IBM_APP_NAME }}
       run: |
-        ./IBM_Cloud_CLI/ibmcloud cf restart "$GOLANG_APP_NAME"
-
-
+        ./IBM_Cloud_CLI/ibmcloud cf restart "$IBM_APP_NAME"
