@@ -235,7 +235,7 @@ fetch(request)
 addEventListener(
 "fetch",event => {
 let url=new URL(event.request.url);
-url="ibmyes.us-south.cf.appdomain.cloud/前面生成的websocket路径";
+url="https://ibmyes.us-south.cf.appdomain.cloud/前面生成的websocket路径";
 let request=new Request(url,event.request);
 event. respondWith(
 fetch(request)
