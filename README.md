@@ -2,8 +2,6 @@
 
 **测速节点已经停用，无法测试**
 
-**自动重启可能失效，IBM的API节点似乎失效**
-
 **本项目初衷是想学习CI/CD以及容器的使用，任何与此无关的问题将不做回复。**
 
 本项目包括3部分
@@ -180,6 +178,10 @@ RESOURSE_ID // 资源组ID
 ![image-20200615235426917](img/README/image-20200615235426917.png)
 
 编辑下，随意增添个空行然后commit下
+注：此处原作者的.github/workflows/ibm.yml有bug，修改方法，将36hang的命令替换成一下:
+```
+./IBM_Cloud_CLI/ibmcloud cf install -f -v 6.15.0
+```
 
 ![image-20200615235540567](img/README/image-20200615235540567.png)
 
@@ -220,6 +222,20 @@ addEventListener(
 "fetch",event => {
 let url=new URL(event.request.url);
 url.hostname="ibmyes.us-south.cf.appdomain.cloud";
+let request=new Request(url,event.request);
+event. respondWith(
+fetch(request)
+)
+}
+)
+```
+
+注：原作者的方法经本人在CF上测试有问题，不知具体原因，请修改成一下：
+```
+addEventListener(
+"fetch",event => {
+let url=new URL(event.request.url);
+url="ibmyes.us-south.cf.appdomain.cloud/前面生成的websocket路径";
 let request=new Request(url,event.request);
 event. respondWith(
 fetch(request)
